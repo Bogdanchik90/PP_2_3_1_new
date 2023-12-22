@@ -31,6 +31,7 @@ public class UserController {
     public String addUser(@ModelAttribute("users") Users users) {
         return "new";
     }
+
     @PostMapping("/")
     public String create(@ModelAttribute("users") @Valid Users users) {
         userService.addUser(users);
@@ -40,9 +41,10 @@ public class UserController {
 
     @GetMapping("/edit")
     public String editUser(@RequestParam("id") int id, Model model) {
-        model.addAttribute("editUser" , userService.getUserById(id));
+        model.addAttribute("editUser", userService.getUserById(id));
         return "edit";
     }
+
     @PatchMapping("/edit")
     public String update(@RequestParam("id") int id, @ModelAttribute("editUsers") @Valid Users updateUsers) {
         userService.editUser(id, updateUsers);
@@ -51,7 +53,7 @@ public class UserController {
 
     @GetMapping("/delete")
     public String delete(@RequestParam("id") int id, Model model) {
-        model.addAttribute("deleteUser",userService.getUserById(id));
+        model.addAttribute("deleteUser", userService.getUserById(id));
         return "delete";
     }
 
